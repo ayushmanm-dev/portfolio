@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayushman Mishra | Portfolio</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --teal:#20948B;
+ --coral:#FF6B4A;
+ --glass:rgba(255,255,255,.08);
+}
+body{
+ font-family:Segoe UI,sans-serif;
+ background:#020617;
+ color:#e5e7eb;
+ overflow-x:hidden;
+}
+
+/* ANIMATED BACKGROUND */
+.aurora{
+ position:fixed;inset:0;z-index:-2;
+ background:radial-gradient(circle at top,#0f3d3a,#020617);
+}
+.particles{
+ position:fixed;inset:0;z-index:-1;
+ background-image:
+  radial-gradient(2px 2px at 20% 30%,rgba(32,148,139,.4),transparent),
+  radial-gradient(2px 2px at 60% 70%,rgba(255,107,74,.4),transparent),
+  radial-gradient(1px 1px at 50% 50%,rgba(203,213,225,.3),transparent),
+  radial-gradient(1px 1px at 80% 10%,rgba(32,148,139,.3),transparent),
+  radial-gradient(2px 2px at 90% 60%,rgba(255,107,74,.3),transparent);
+ background-size:200% 200%;
+ animation:float 20s ease-in-out infinite;
+}
+@keyframes float{
+ 0%,100%{background-position:0% 0%}
+ 50%{background-position:100% 100%}
+}
+
+.glow{
+ position:fixed;
+ width:600px;height:600px;
+ border-radius:50%;
+ pointer-events:none;
+ z-index:-1;
+ filter:blur(100px);
+ opacity:.3;
+}
+.glow-1{
+ top:-200px;left:-200px;
+ background:radial-gradient(circle,var(--teal),transparent);
+ animation:pulse1 8s ease-in-out infinite;
+}
+.glow-2{
+ bottom:-200px;right:-200px;
+ background:radial-gradient(circle,var(--coral),transparent);
+ animation:pulse2 8s ease-in-out infinite;
+}
+@keyframes pulse1{
+ 0%,100%{transform:scale(1);opacity:.3}
+ 50%{transform:scale(1.2);opacity:.5}
+}
+@keyframes pulse2{
+ 0%,100%{transform:scale(1.2);opacity:.3}
+ 50%{transform:scale(1);opacity:.5}
+}
+
+/* NAV */
+nav{
+ position:fixed;top:0;width:100%;
+ background:rgba(2,6,23,.85);
+ backdrop-filter:blur(12px);
+ z-index:1000;
+ border-bottom:1px solid rgba(255,255,255,.05);
+}
+nav .wrap{
+ max-width:1200px;margin:auto;
+ padding:1rem 2rem;
+ display:flex;justify-content:space-between;align-items:center;
+}
+nav .nav-links{
+ display:flex;
+ align-items:center;
+}
+nav a{
+ color:#cbd5f5;text-decoration:none;
+ margin-left:1.5rem;font-weight:500;
+ position:relative;
+ transition:.3s;
+}
+nav a::after{
+ content:'';
+ position:absolute;
+ bottom:-5px;left:0;
+ width:0;height:2px;
+ background:linear-gradient(90deg,var(--teal),var(--coral));
+ transition:.3s;
+}
+nav a:hover{color:#fff}
+nav a:hover::after{width:100%}
+.logo{
+ font-size:1.6rem;font-weight:800;
+ background:linear-gradient(135deg,var(--teal),var(--coral));
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+ animation:shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer{
+ 0%,100%{filter:brightness(1)}
+ 50%{filter:brightness(1.3)}
+}
+
+/* HERO */
+.hero{
+ min-height:100vh;
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;padding:2rem;
+ position:relative;
+}
+.hero h1{
+ font-size:3.6rem;
+ animation:fadeInUp .8s ease-out;
+}
+.hero span{
+ background:linear-gradient(135deg,var(--teal),var(--coral));
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+ display:inline-block;
+ animation:float-text 3s ease-in-out infinite;
+}
+@keyframes float-text{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-10px)}
+}
+.hero p{
+ font-size:1.4rem;color:#cbd5e1;
+ margin:1rem 0 2rem;
+ animation:fadeInUp .8s ease-out .2s backwards;
+}
+.hero .btn-group{
+ animation:fadeInUp .8s ease-out .4s backwards;
+}
+@keyframes fadeInUp{
+ from{opacity:0;transform:translateY(30px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+/* BUTTONS */
+.btn{
+ padding:.9rem 2.2rem;
+ border-radius:50px;
+ font-weight:600;text-decoration:none;
+ display:inline-block;margin:.3rem;
+ transition:.4s;
+ position:relative;
+ overflow:hidden;
+}
+.btn::before{
+ content:'';
+ position:absolute;
+ top:50%;left:50%;
+ width:0;height:0;
+ border-radius:50%;
+ background:rgba(255,255,255,.2);
+ transform:translate(-50%,-50%);
+ transition:.6s;
+}
+.btn:hover::before{
+ width:300px;height:300px;
+}
+.primary{
+ background:linear-gradient(135deg,var(--coral),#e5583d);
+ color:#fff;
+ box-shadow:0 10px 30px rgba(255,107,74,.3);
+}
+.primary:hover{
+ transform:translateY(-3px);
+ box-shadow:0 15px 40px rgba(255,107,74,.5);
+}
+.secondary{
+ border:2px solid var(--teal);
+ color:var(--teal);
+ background:transparent;
+}
+.secondary:hover{
+ background:var(--teal);
+ color:#fff;
+ transform:translateY(-3px);
+ box-shadow:0 10px 30px rgba(32,148,139,.3);
+}
+
+/* SECTIONS */
+section{padding:6rem 2rem;position:relative}
+.container{max-width:1200px;margin:auto}
+.title{
+ text-align:center;
+ font-size:2.7rem;
+ margin-bottom:3rem;
+ position:relative;
+ width:100%;
+}
+.title::after{
+ content:'';
+ position:absolute;
+ bottom:-10px;left:50%;
+ transform:translateX(-50%);
+ width:80px;height:4px;
+ background:linear-gradient(90deg,var(--teal),var(--coral));
+ border-radius:2px;
+}
+
+/* GLASS CARD */
+.card{
+ background:var(--glass);
+ backdrop-filter:blur(16px);
+ border-radius:22px;
+ padding:2rem;
+ border:1px solid rgba(255,255,255,.1);
+ transition:.4s;
+ position:relative;
+ overflow:hidden;
+}
+.card::before{
+ content:'';
+ position:absolute;
+ top:0;left:-100%;
+ width:100%;height:100%;
+ background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+ transition:.6s;
+}
+.card:hover::before{
+ left:100%;
+}
+.card:hover{
+ transform:translateY(-10px);
+ box-shadow:0 25px 60px rgba(32,148,139,.35);
+ border-color:rgba(32,148,139,.3);
+}
+
+/* GRID */
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+ gap:2rem;
+}
+
+/* ICON */
+.icon{
+ font-size:2.2rem;
+ margin-bottom:1rem;
+ display:inline-block;
+ animation:bounce 2s ease-in-out infinite;
+}
+@keyframes bounce{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-10px)}
+}
+
+/* ABOUT CARD SPECIAL */
+#about .card{
+ background:linear-gradient(135deg,rgba(32,148,139,.1),rgba(255,107,74,.1));
+ border:1px solid rgba(32,148,139,.2);
+}
+#about .card p{
+ line-height:1.8;
+ font-size:1.05rem;
+}
+
+/* PROJECT CARDS */
+#projects .card h3{
+ color:var(--coral);
+ margin-bottom:.8rem;
+ font-size:1.4rem;
+}
+
+/* CONNECT */
+.connect-card{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:1rem;
+ cursor:pointer;
+ transition:.3s;
+}
+.connect-card:hover{
+ background:rgba(32,148,139,.15);
+}
+.connect-info{
+ display:flex;
+ flex-direction:column;
+}
+.connect-info strong{
+ font-size:1.1rem;
+ color:var(--teal);
+ margin-bottom:.3rem;
+}
+.connect-info span{
+ font-size:.9rem;
+ color:#94a3b8;
+}
+.copy{
+ font-size:.85rem;
+ padding:.4rem 1rem;
+ background:var(--teal);
+ color:#fff;
+ border-radius:20px;
+ opacity:0;
+ transition:.3s;
+ font-weight:600;
+}
+.show{opacity:1}
+
+/* FOOTER */
+footer{
+ text-align:center;padding:3rem 2rem;
+ background:rgba(2,6,23,.95);
+ color:#94a3b8;
+ border-top:1px solid rgba(255,255,255,.05);
+}
+footer p{
+ font-size:1rem;
+ letter-spacing:.5px;
+}
+
+/* REVEAL */
+.reveal{
+ opacity:0;
+ transform:translateY(40px);
+ transition:1s ease-out;
+}
+.reveal.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
+/* SCROLL INDICATOR */
+.scroll-indicator{
+ position:absolute;
+ bottom:30px;
+ left:50%;
+ transform:translateX(-50%);
+ animation:scroll-bounce 2s ease-in-out infinite;
+}
+.scroll-indicator::before{
+ content:'↓';
+ font-size:2rem;
+ color:var(--teal);
+}
+@keyframes scroll-bounce{
+ 0%,100%{transform:translateX(-50%) translateY(0)}
+ 50%{transform:translateX(-50%) translateY(10px)}
+}
+
+@media(max-width:768px){
+ .hero h1{font-size:2.4rem}
+ nav .wrap{flex-direction:column;gap:.5rem;padding:1rem}
+ .nav-links{flex-direction:column;gap:.3rem}
+ nav a{margin:0}
+ .title{font-size:2rem}
+}
+</style>
+</head>
+
+<body>
+
+<div class="aurora"></div>
+<div class="particles"></div>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<nav>
+ <div class="wrap">
+  <div class="logo">AM</div>
+  <div class="nav-links">
+   <a href="#about">About</a>
+   <a href="#projects">Projects</a>
+   <a href="#focus">Focus</a>
+   <a href="#opportunities">Opportunities</a>
+   <a href="#connect">Connect</a>
+  </div>
+ </div>
+</nav>
+
+<section class="hero">
+ <div>
+  <h1>Hi, I'm <span>Ayushman Mishra</span></h1>
+  <p>B.Tech CSE Student | AI, Cybersecurity & Blockchain Enthusiast</p>
+  <div class="btn-group">
+   <a class="btn primary" href="#connect">Connect With Me</a>
+   <a class="btn secondary" href="#about">About Me</a>
+  </div>
+  <div class="scroll-indicator"></div>
+ </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+<div class="container">
+<h2 class="title reveal">About Me</h2>
+<div class="card reveal">
+<p>
+B.Tech Computer Science Engineering student at ITER, SOA University, with a strong foundation in programming and
+problem-solving. Passionate about Web Development, Artificial Intelligence, Cybersecurity, and Blockchain,
+actively exploring technology through continuous learning and hands-on practice.
+</p>
+<p style="margin-top:1rem">
+Committed to building strong fundamentals, gaining practical experience, and contributing meaningfully
+to innovative and secure technology solutions.
+</p>
+</div>
+</div>
+</section>
+
+<!-- FUTURE READY PROJECTS -->
+<section id="projects">
+<div class="container">
+<h2 class="title reveal">Developing Future-Ready Projects</h2>
+<div class="grid reveal">
+<div class="card">
+<h3>Problem Solving</h3>
+<p>Leveraging technical skills to solve complex real-world challenges.</p>
+</div>
+<div class="card">
+<h3>Scalable Solutions</h3>
+<p>Designing systems for long-term growth, performance, and sustainability.</p>
+</div>
+<div class="card">
+<h3>Secure Development</h3>
+<p>Prioritizing security to protect data, privacy, and trust.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- AI & CYBER -->
+<section id="focus">
+<div class="container">
+<h2 class="title reveal">AI & Cybersecurity Focus</h2>
+<div class="grid reveal">
+<div class="card">
+<div class="icon">🤖</div>
+<h3>AI Integration</h3>
+<p>Exploring intelligent systems and machine learning concepts.</p>
+</div>
+<div class="card">
+<div class="icon">🔒</div>
+<h3>Cybersecurity Practices</h3>
+<p>Applying secure coding and defensive strategies.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- BLOCKCHAIN -->
+<section>
+<div class="container">
+<h2 class="title reveal">Blockchain Technology</h2>
+<div class="grid reveal">
+<div class="card">
+<div class="icon">🔗</div>
+<h3>Decentralization</h3>
+<p>Understanding distributed ledger systems.</p>
+</div>
+<div class="card">
+<div class="icon">🛡️</div>
+<h3>Security</h3>
+<p>Exploring cryptographic security mechanisms.</p>
+</div>
+<div class="card">
+<div class="icon">💡</div>
+<h3>Innovation</h3>
+<p>Applying blockchain to real-world problems.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- OPPORTUNITIES -->
+<section id="opportunities">
+<div class="container">
+<h2 class="title reveal">Open to Opportunities</h2>
+<div class="grid reveal">
+<div class="card">Internships</div>
+<div class="card">Entry-Level Roles</div>
+<div class="card">Collaborative Projects</div>
+</div>
+</div>
+</section>
+
+<!-- CONNECT WITH ME -->
+<section id="connect">
+<div class="container">
+<h2 class="title reveal">Connect With Me</h2>
+
+<div class="grid reveal">
+
+<div class="card connect-card" onclick="openLink('mailto:ayushmanmishra271@gmail.com')">
+<div class="connect-info">
+<strong>Email</strong>
+<span>ayushmanmishra271@gmail.com</span>
+</div>
+<div class="copy">Open</div>
+</div>
+
+<div class="card connect-card" onclick="openLink('tel:+917991083809')">
+<div class="connect-info">
+<strong>Phone</strong>
+<span>+91 7991083809</span>
+</div>
+<div class="copy">Dial</div>
+</div>
+
+<div class="card connect-card" onclick="openLink('https://www.linkedin.com/in/ayushman-mishra-489010398')">
+  <div class="connect-info">
+    <strong>LinkedIn</strong>
+    <span>linkedin_ayushmanmishra</span>
+  </div>
+  <div class="copy">Open</div>
+</div>
+
+
+<div class="card connect-card" onclick="copyText(this,'Bhubaneswar, Odisha, India')">
+<div class="connect-info">
+<strong>Location</strong>
+<span>Bhubaneswar, Odisha, India</span>
+</div>
+<div class="copy">Copied</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<footer>
+<p>© 2025 Ayushman Mishra | Building Secure & Intelligent Systems</p>
+</footer>
+
+<script>
+const r=document.querySelectorAll(".reveal");
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{
+  if(e.isIntersecting){
+   e.target.classList.add("show");
+  }
+ });
+},{threshold:.1});
+r.forEach(el=>observer.observe(el));
+
+function openLink(link){window.open(link,"_blank")}
+function copyText(el,text){
+ navigator.clipboard.writeText(text);
+ const c=el.querySelector(".copy");
+ c.classList.add("show");
+ setTimeout(()=>c.classList.remove("show"),1500);
+}
+</script>
+
+</body>
+</html>
